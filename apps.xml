@@ -33,22 +33,6 @@
     <IsExclusive>true</IsExclusive>
   </App>
   <App>
-     <App>
-    <Id>Test</Id>
-    <Name>Test</Name>
-    <Developer>Test</Developer>
-    <Version>Test</Version>
-    <Description>Just Test App</Description>
-    <DownloadUrl>https://ia800103.us.archive.org/view_archive.php?archive=/29/items/Win8AppxArchive/Original%20APPX/News/Flipboard.Flipboard_2017.714.251.0_neutral_~_3f5azkryzdbc4.zip&amp;file=Flipboard.Flipboard_2017.714.251.0_neutral_~_3f5azkryzdbc4.AppxBundle</DownloadUrl>
-    <IconUrl>https://cdn-icon.bluestacks.com/Ii0Gz7HeBjbA0YVpJ3iKgw4pz9Wt0eKuk7sWW0JYRKCYt58FUw1m7DPul2r850pQH_es</IconUrl>
-    <Category>News + Weather</Category>
-    <FileType>APPXBUNDLE</FileType>
-    <Architecture>AnyCPU</Architecture>
-    <Downloads>0</Downloads>
-    <Rank>999</Rank>
-    <Rating>4.0</Rating>
-    <IsExclusive>false</IsExclusive>
-  </App>
     <Id>136_archive</Id>
     <Name>VLC for Windows 8</Name>
     <Developer>VideoLAN</Developer>
