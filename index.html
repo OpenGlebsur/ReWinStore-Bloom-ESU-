@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReWinStore App Uploader | Windows 8.1 Style</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Segoe WP', 'Segoe UI Light', 'Segoe UI Semilight', 'Segoe UI Semibold', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f0f0f0;
+            color: #000000;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+            background-image: url('https://learn-attachment.microsoft.com/api/attachments/94fda143-a475-4529-8957-8d1aba911f4b?platform=QnA');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            background-blend-mode: overlay;
+            background-color: rgba(255, 255, 255, 0.7);
+            transition: all 0.3s ease;
+        }
+        
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            background-color: rgba(0, 0, 0, 0.85);
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 0;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border: 1px solid #d6d6d6;
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+        
+        .dark-mode .container {
+            background: rgba(40, 40, 40, 0.95);
+            border-color: #444;
+            color: #ffffff;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #0078d7;
+        }
+        
+        h1 {
+            color: #0078d7;
+            margin-bottom: 10px;
+            font-weight: 300;
+            font-size: 2.5rem;
+            letter-spacing: -0.5px;
+        }
+        
+        .subtitle {
+            color: #666666;
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
+        
+        .dark-mode .subtitle {
+            color: #a0a0a0;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333333;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+        
+        .dark-mode label {
+            color: #d4d4d4;
+        }
+        
+        .required {
+            color: #e81123;
+        }
+        
+        input[type="text"],
+        input[type="url"] {
+            width: 100%;
+            padding: 14px 15px;
+            border: 2px solid #cccccc;
+            border-radius: 0;
+            font-size: 1.1rem;
+            transition: all 0.2s;
+            background-color: #ffffff;
+            color: #000000;
+            font-weight: 400;
+        }
+        
+        .dark-mode input[type="text"],
+        .dark-mode input[type="url"] {
+            background-color: #2a2a2a;
+            border-color: #555;
+            color: #ffffff;
+        }
+        
+        input:focus {
+            border-color: #0078d7;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(0, 120, 215, 0.3);
+        }
+        
+        .url-validation {
+            margin-top: 5px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            min-height: 20px;
+        }
+        
+        .valid { color: #00bc6a; }
+        .invalid { color: #e81123; }
+        
+        .buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            min-width: 160px;
+        }
+        
+        .btn-primary { background-color: #0078d7; color: white; }
+        .btn-primary:hover { background-color: #005a9e; }
+        
+        .btn-secondary { background-color: #767676; color: white; }
+        .btn-secondary:hover { background-color: #5d5d5d; }
+        
+        .btn-success { background-color: #00bc6a; color: white; }
+        .btn-success:hover { background-color: #009b57; }
+        
+        .btn-theme-toggle {
+            background-color: #ffb900;
+            color: #000;
+        }
+        .btn-theme-toggle:hover { background-color: #e6a700; }
+        
+        .theme-toggle-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        .alert {
+            padding: 20px;
+            border-radius: 0;
+            margin-bottom: 25px;
+            display: none;
+            border-left: 6px solid;
+        }
+        
+        .alert-success {
+            background-color: #e6f4ea;
+            color: #00bc6a;
+            border-left-color: #00bc6a;
+        }
+        .dark-mode .alert-success { background-color: #0d2c1d; }
+        
+        .alert-error {
+            background-color: #fde7e9;
+            color: #e81123;
+            border-left-color: #e81123;
+        }
+        .dark-mode .alert-error { background-color: #2c0a0d; }
+        
+        .instructions {
+            background-color: #e3f2fd;
+            padding: 20px;
+            border-radius: 0;
+            margin-bottom: 25px;
+            border-left: 6px solid #0078d7;
+            transition: all 0.3s ease;
+        }
+        .dark-mode .instructions { background-color: #1a2c3c; color: #fff; }
+        .instructions h3 { color: #005a9e; margin-bottom: 10px; display: flex; gap: 10px; }
+        .dark-mode .instructions h3 { color: #4fc3f7; }
+        
+        .stats {
+            background-color: #ffffff;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-left: 6px solid #0078d7;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #d6d6d6;
+        }
+        .dark-mode .stats { background-color: #2a2a2a; border-color: #444; }
+        .stat-value { font-size: 2.5rem; font-weight: 300; color: #0078d7; margin-bottom: 5px; }
+        .stat-label { font-size: 0.95rem; color: #666; text-transform: uppercase; }
+        .dark-mode .stat-label { color: #a0a0a0; }
+        
+        .metro-divider {
+            height: 2px;
+            background: linear-gradient(to right, #0078d7, transparent);
+            margin: 0 20px;
+            width: 2px;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #d6d6d6;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        .dark-mode footer { border-color: #444; color: #a0a0a0; }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 30px;
+        }
+        .spinner {
+            border: 3px solid #e0e0e0;
+            border-top: 3px solid #0078d7;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        
+        .metro-grid-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(to right, rgba(0,120,215,0.03) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(0,120,215,0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            .buttons { flex-direction: column; }
+            .btn { width: 100%; }
+            .stats { flex-direction: column; gap: 15px; }
+            .metro-divider { display: none; }
+            .theme-toggle-container { position: static; margin-bottom: 20px; text-align: center; }
+        }
+        
+        ::-webkit-scrollbar { width: 12px; }
+        ::-webkit-scrollbar-track { background: #f0f0f0; }
+        .dark-mode ::-webkit-scrollbar-track { background: #1a1a1a; }
+        ::-webkit-scrollbar-thumb { background: #0078d7; }
+        
+        .file-input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        .file-input-group input[type="file"] {
+            flex: 1;
+            padding: 10px;
+            border: 2px solid #ccc;
+            background: white;
+        }
+        .dark-mode .file-input-group input[type="file"] {
+            background: #2a2a2a;
+            border-color: #555;
+            color: white;
+        }
+        small { display: block; margin-top: 5px; }
+    </style>
+</head>
+<body>
+<div class="metro-grid-bg"></div>
+<div class="theme-toggle-container">
+    <button id="themeToggle" class="btn btn-theme-toggle"><i class="fas fa-moon"></i> Dark Mode</button>
+</div>
+
+<div class="container">
+    <header>
+        <h1><i class="fab fa-windows accent-blue"></i> ReWinStore App Uploader</h1>
+        <p class="subtitle">Add new apps to apps.xml – Windows 8 Metro style</p>
+    </header>
+
+    <div class="stats" id="statsContainer">
+        <div class="stat-item">
+            <div class="stat-value" id="appCount">—</div>
+            <div class="stat-label">Apps in XML</div>
+        </div>
+        <div class="metro-divider"></div>
+        <div class="stat-item">
+            <div class="stat-value" id="newAppCount">0</div>
+            <div class="stat-label">Added (unsaved)</div>
+        </div>
+    </div>
+
+    <div class="instructions">
+        <h3><i class="fas fa-info-circle accent-blue"></i> How to use</h3>
+        <p>Load the current <strong>apps.xml</strong> from the URL below or upload your local copy. Fill in the fields for the new app (all required). Click <strong>"Add & Download XML"</strong> – the updated file will be downloaded. Then commit the file to your GitHub repository manually.</p>
+        <p><i class="fas fa-link"></i> Default XML URL: <code id="defaultUrl">https://github.com/OpenGlebsur/ReWinStore-Bloom-ESU-/raw/refs/heads/main/apps.xml</code></p>
+    </div>
+
+    <div id="successAlert" class="alert alert-success"><i class="fas fa-check-circle"></i> <span id="successMessage"></span></div>
+    <div id="errorAlert" class="alert alert-error"><i class="fas fa-exclamation-circle"></i> <span id="errorMessage"></span></div>
+    <div class="loading" id="loading"><div class="spinner"></div><p>Processing XML...</p></div>
+
+    <!-- XML source control -->
+    <div style="background: #f8f8f8; padding: 15px; margin-bottom: 25px; border-left: 6px solid #0078d7;">
+        <label><i class="fas fa-database"></i> XML source</label>
+        <div class="file-input-group">
+            <input type="text" id="xmlUrl" placeholder="URL to apps.xml" value="https://raw.githubusercontent.com/OpenGlebsur/ReWinStore-Bloom-ESU-/refs/heads/main/apps.xml">
+            <button id="fetchUrlBtn" class="btn btn-secondary" style="min-width: auto;">Fetch from URL</button>
+            <input type="file" id="xmlFileInput" accept=".xml">
+            <button id="loadFileBtn" class="btn btn-secondary" style="min-width: auto;">Load local XML</button>
+        </div>
+        <small><i class="fas fa-info-circle"></i> The tool works completely offline once loaded. No GitHub API required.</small>
+    </div>
+
+    <!-- New app form -->
+    <form id="appForm">
+        <div class="form-group">
+            <label for="id">Id <span class="required">*</span></label>
+            <input type="text" id="id" placeholder="e.g., 109_archive" required>
+        </div>
+        <div class="form-group">
+            <label for="name">Name <span class="required">*</span></label>
+            <input type="text" id="name" placeholder="Flipboard" required>
+        </div>
+        <div class="form-group">
+            <label for="developer">Developer <span class="required">*</span></label>
+            <input type="text" id="developer" placeholder="Flipboard.inc" required>
+        </div>
+        <div class="form-group">
+            <label for="version">Version <span class="required">*</span></label>
+            <input type="text" id="version" placeholder="2017.714.251.0" required>
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <input type="text" id="description" placeholder="Offline in 2025 shutdown">
+        </div>
+        <div class="form-group">
+            <label for="downloadUrl">DownloadUrl <span class="required">*</span></label>
+            <input type="url" id="downloadUrl" placeholder="https://github.com/.../appx" required>
+            <div id="urlValidation" class="url-validation"><i class="fas fa-exclamation-circle"></i><span>Should end with .appx or .appxbundle</span></div>
+        </div>
+        <div class="form-group">
+            <label for="iconUrl">IconUrl</label>
+            <input type="url" id="iconUrl" placeholder="https://cdn-icon.bluestacks.com/...">
+        </div>
+        <div class="form-group">
+            <label for="category">Category</label>
+            <input type="text" id="category" placeholder="News + Weather">
+        </div>
+        <div class="form-group">
+            <label for="fileType">FileType</label>
+            <input type="text" id="fileType" placeholder="APPXBUNDLE">
+        </div>
+        <div class="form-group">
+            <label for="architecture">Architecture</label>
+            <input type="text" id="architecture" placeholder="AnyCPU">
+        </div>
+
+        <div class="buttons">
+            <button type="button" id="addBtn" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Add & Download XML</button>
+            <button type="button" id="clearFormBtn" class="btn btn-secondary"><i class="fas fa-eraser"></i> Clear form</button>
+        </div>
+    </form>
+
+    <footer>
+        <p>ReWinStore Bloom ESU – Community driven app repository for Windows 8.1</p>
+        <p>After downloading the updated apps.xml, commit it to your GitHub repo: <strong>OpenGlebsur/ReWinStore-Bloom-ESU-</strong></p>
+    </footer>
+</div>
+
+<script>
+    // Global XML document
+    let xmlDoc = null;
+    let originalXmlString = null;
+    let newAppsCounter = 0;
+
+    // DOM elements
+    const xmlUrlInput = document.getElementById('xmlUrl');
+    const fetchUrlBtn = document.getElementById('fetchUrlBtn');
+    const fileInput = document.getElementById('xmlFileInput');
+    const loadFileBtn = document.getElementById('loadFileBtn');
+    const addBtn = document.getElementById('addBtn');
+    const clearFormBtn = document.getElementById('clearFormBtn');
+    const appCountSpan = document.getElementById('appCount');
+    const newAppCountSpan = document.getElementById('newAppCount');
+    const successAlert = document.getElementById('successAlert');
+    const errorAlert = document.getElementById('errorAlert');
+    const successMessageSpan = document.getElementById('successMessage');
+    const errorMessageSpan = document.getElementById('errorMessage');
+    const loadingDiv = document.getElementById('loading');
+
+    // Form fields
+    const fields = {
+        id: document.getElementById('id'),
+        name: document.getElementById('name'),
+        developer: document.getElementById('developer'),
+        version: document.getElementById('version'),
+        description: document.getElementById('description'),
+        downloadUrl: document.getElementById('downloadUrl'),
+        iconUrl: document.getElementById('iconUrl'),
+        category: document.getElementById('category'),
+        fileType: document.getElementById('fileType'),
+        architecture: document.getElementById('architecture')
+    };
+
+    // Helper: show/hide loading
+    function setLoading(show) {
+        loadingDiv.style.display = show ? 'block' : 'none';
+    }
+
+    function hideAlerts() {
+        successAlert.style.display = 'none';
+        errorAlert.style.display = 'none';
+    }
+
+    function showError(msg) {
+        errorMessageSpan.textContent = msg;
+        errorAlert.style.display = 'block';
+        setTimeout(() => { if(errorAlert.style.display === 'block') errorAlert.style.display = 'none'; }, 5000);
+    }
+
+    function showSuccess(msg) {
+        successMessageSpan.textContent = msg;
+        successAlert.style.display = 'block';
+        setTimeout(() => { if(successAlert.style.display === 'block') successAlert.style.display = 'none'; }, 4000);
+    }
+
+    // Validate download URL extension and banned domains (simple)
+    function validateDownloadUrl(url) {
+        if (!url) return false;
+        const lowerUrl = url.toLowerCase();
+        const allowedExtensions = ['.appx', '.appxbundle'];
+        const isValidExt = allowedExtensions.some(ext => lowerUrl.endsWith(ext));
+        const bannedDomains = ['mediafire.com', 'archive.org', 'catbox.moe', 'drive.google.com', 'mega.nz'];
+        const isBanned = bannedDomains.some(domain => lowerUrl.includes(domain));
+        const urlValidationDiv = document.getElementById('urlValidation');
+        if (isBanned) {
+            urlValidationDiv.className = 'url-validation invalid';
+            urlValidationDiv.innerHTML = '<i class="fas fa-times-circle"></i><span>Banned file host (MediaFire, Archive.org, Catbox, etc.)</span>';
+            return false;
+        }
+        if (isValidExt) {
+            urlValidationDiv.className = 'url-validation valid';
+            urlValidationDiv.innerHTML = '<i class="fas fa-check-circle"></i><span>Valid .appx/.appxbundle URL</span>';
+            return true;
+        } else {
+            urlValidationDiv.className = 'url-validation invalid';
+            urlValidationDiv.innerHTML = '<i class="fas fa-times-circle"></i><span>URL must end with .appx or .appxbundle</span>';
+            return false;
+        }
+    }
+
+    // Update stats display
+    function updateStats() {
+        if (!xmlDoc) {
+            appCountSpan.textContent = '—';
+            newAppCountSpan.textContent = '0';
+            return;
+        }
+        const apps = xmlDoc.querySelectorAll('Application');
+        appCountSpan.textContent = apps.length;
+        newAppCountSpan.textContent = newAppsCounter;
+    }
+
+    // Parse XML string into DOM
+    function parseXmlString(xmlStr) {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(xmlStr, 'application/xml');
+        const parseError = doc.querySelector('parsererror');
+        if (parseError) {
+            throw new Error('Invalid XML: ' + parseError.textContent);
+        }
+        return doc;
+    }
+
+    // Load XML from text content
+    function loadXmlContent(xmlStr, sourceName) {
+        try {
+            setLoading(true);
+            const doc = parseXmlString(xmlStr);
+            xmlDoc = doc;
+            originalXmlString = xmlStr;
+            newAppsCounter = 0;
+            updateStats();
+            hideAlerts();
+            showSuccess(`Loaded ${sourceName} – ${xmlDoc.querySelectorAll('Application').length} apps found.`);
+        } catch (err) {
+            showError('XML parsing failed: ' + err.message);
+            xmlDoc = null;
+            updateStats();
+        } finally {
+            setLoading(false);
+        }
+    }
+
+    // Fetch from URL (CORS-friendly: raw.githubusercontent.com allows)
+    async function fetchFromUrl(url) {
+        if (!url) {
+            showError('Please enter a URL');
+            return;
+        }
+        setLoading(true);
+        try {
+            const response = await fetch(url);
+            if (!response.ok) throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            const xmlText = await response.text();
+            loadXmlContent(xmlText, `URL (${url})`);
+        } catch (err) {
+            showError('Failed to fetch XML: ' + err.message);
+            xmlDoc = null;
+            updateStats();
+        } finally {
+            setLoading(false);
+        }
+    }
+
+    // Load local file
+    function loadLocalFile(file) {
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            loadXmlContent(e.target.result, `file: ${file.name}`);
+        };
+        reader.onerror = () => showError('Error reading file');
+        reader.readAsText(file, 'UTF-8');
+    }
+
+    // Add new application to XML document
+    function addAppToXml() {
+        if (!xmlDoc) {
+            showError('No XML loaded. Please fetch or upload apps.xml first.');
+            return false;
+        }
+
+        // Gather values
+        const appData = {};
+        for (const [key, el] of Object.entries(fields)) {
+            let value = el.value.trim();
+            if (key === 'downloadUrl' && !validateDownloadUrl(value)) {
+                showError('Invalid Download URL: ' + document.getElementById('urlValidation').querySelector('span')?.innerText);
+                return false;
+            }
+            // Only required: id, name, developer, version, downloadUrl
+            if ((key === 'id' || key === 'name' || key === 'developer' || key === 'version' || key === 'downloadUrl') && !value) {
+                showError(`Field "${key}" is required.`);
+                return false;
+            }
+            appData[key] = value || ''; // allow empty for optional fields
+        }
+
+        // Find the container for <Application> elements
+        let root = xmlDoc.documentElement;
+        let container = root;
+        // If root is not Applications/Apps/Repository, search for a parent that has Application children
+        if (root.tagName !== 'Applications' && root.tagName !== 'Apps' && root.tagName !== 'Repository') {
+            const possibleContainer = root.querySelector('Applications, Apps, Repository');
+            if (possibleContainer) container = possibleContainer;
+            else {
+                // fallback: if root already contains Application directly, use root
+                if (!root.querySelector('Application')) {
+                    // no Application found? maybe empty, we'll append to root
+                    console.warn('No obvious Application container, using root');
+                }
+            }
+        }
+
+        // Create <Application> element
+        const appElem = xmlDoc.createElement('Application');
+        for (const [key, value] of Object.entries(appData)) {
+            const child = xmlDoc.createElement(key);
+            child.textContent = value;
+            appElem.appendChild(child);
+        }
+        container.appendChild(appElem);
+        newAppsCounter++;
+        updateStats();
+        return true;
+    }
+
+    // Serialize XML to string with formatting
+    function serializeXml(doc) {
+        const serializer = new XMLSerializer();
+        let xmlStr = serializer.serializeToString(doc);
+        // Add XML declaration if missing
+        if (!xmlStr.startsWith('<?xml')) {
+            xmlStr = '<?xml version="1.0" encoding="UTF-8"?>\n' + xmlStr;
+        }
+        // Basic pretty print (newlines after > before <)
+        xmlStr = xmlStr.replace(/>\s*</g, '>\n<');
+        return xmlStr;
+    }
+
+    // Download XML file
+    function downloadXml(xmlString, filename = 'apps.xml') {
+        const blob = new Blob([xmlString], { type: 'application/xml' });
+        const link = document.createElement('a');
+        const url = URL.createObjectURL(blob);
+        link.href = url;
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+    }
+
+    // Main action: add app and download
+    function onAddAndDownload() {
+        if (!xmlDoc) {
+            showError('No XML loaded. Please load apps.xml first (via URL or local file).');
+            return;
+        }
+        if (!addAppToXml()) return;
+
+        // Serialize and download
+        const updatedXml = serializeXml(xmlDoc);
+        downloadXml(updatedXml, 'apps.xml');
+        showSuccess(`New app "${fields.name.value.trim()}" added. Download started. Commit the file to GitHub.`);
+        // Reset newAppsCounter? Actually we keep the in-memory XML as updated,
+        // but the download is separate. We'll keep counter as is, but we clear the form.
+        clearForm();
+        // Note: xmlDoc remains with the new app, further adds are possible.
+    }
+
+    function clearForm() {
+        for (const el of Object.values(fields)) {
+            el.value = '';
+        }
+        document.getElementById('urlValidation').className = 'url-validation';
+        document.getElementById('urlValidation').innerHTML = '<i class="fas fa-exclamation-circle"></i><span>Should end with .appx or .appxbundle</span>';
+    }
+
+    // Event listeners
+    fetchUrlBtn.addEventListener('click', () => {
+        let url = xmlUrlInput.value.trim();
+        if (!url) url = 'https://raw.githubusercontent.com/OpenGlebsur/ReWinStore-Bloom-ESU-/refs/heads/main/apps.xml';
+        fetchFromUrl(url);
+    });
+    loadFileBtn.addEventListener('click', () => {
+        const file = fileInput.files[0];
+        if (!file) { showError('Select an XML file first'); return; }
+        loadLocalFile(file);
+    });
+    addBtn.addEventListener('click', onAddAndDownload);
+    clearFormBtn.addEventListener('click', clearForm);
+    fields.downloadUrl.addEventListener('input', () => validateDownloadUrl(fields.downloadUrl.value));
+
+    // Theme toggle (preserve style)
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+    const savedTheme = localStorage.getItem('8store-theme') || 'light';
+    if (savedTheme === 'dark') {
+        body.classList.add('dark-mode');
+        themeToggle.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
+    }
+    themeToggle.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        const isDark = body.classList.contains('dark-mode');
+        localStorage.setItem('8store-theme', isDark ? 'dark' : 'light');
+        themeToggle.innerHTML = isDark ? '<i class="fas fa-sun"></i> Light Mode' : '<i class="fas fa-moon"></i> Dark Mode';
+    });
+
+    // Optionally load default XML on page start
+    setTimeout(() => {
+        fetchFromUrl('https://raw.githubusercontent.com/OpenGlebsur/ReWinStore-Bloom-ESU-/refs/heads/main/apps.xml');
+    }, 100);
+</script>
+</body>
+</html>
