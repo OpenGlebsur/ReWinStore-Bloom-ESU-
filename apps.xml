@@ -6,7 +6,7 @@
     <Developer>Flipboard.inc</Developer>
     <Version>2017.714.251.0</Version>
     <Description>Offline in 2025 shutdown</Description>
-    <DownloadUrl>https://ia800103.us.archive.org/view_archive.php?archive=/29/items/Win8AppxArchive/Original%20APPX/News/Flipboard.Flipboard_2017.714.251.0_neutral_~_3f5azkryzdbc4.zip&amp;file=Flipboard.Flipboard_2017.714.251.0_neutral_~_3f5azkryzdbc4.AppxBundle</DownloadUrl>
+    <DownloadUrl>https://github.com/OpenGlebsur/ReWinStore-Bloom-ESU-/raw/refs/heads/main/appx/Flipboard.Flipboard_2017.714.251.0_neutral_~_3f5azkryzdbc4.AppxBundle</DownloadUrl>
     <IconUrl>https://cdn-icon.bluestacks.com/Ii0Gz7HeBjbA0YVpJ3iKgw4pz9Wt0eKuk7sWW0JYRKCYt58FUw1m7DPul2r850pQH_es</IconUrl>
     <Category>News + Weather</Category>
     <FileType>APPXBUNDLE</FileType>
@@ -22,7 +22,7 @@
     <Developer>DraydenYT</Developer>
     <Version>1.0</Version>
     <Description>Music app by DraydenYT. Listen to your favorite tracks in a modern style.</Description>
-    <DownloadUrl>https://files.catbox.moe/9gmyu5.appx</DownloadUrl>
+    <DownloadUrl>https://github.com/OpenGlebsur/ReWinStore-Bloom-ESU-/raw/refs/heads/main/appx/DrayMusic_1.0.0.0_AnyCPU.appx</DownloadUrl>
     <IconUrl>https://files.catbox.moe/lxjx96.png</IconUrl>
     <Category>music</Category>
     <FileType>APPX</FileType>
@@ -38,7 +38,7 @@
     <Developer>VideoLAN</Developer>
     <Version>3.1.1.0</Version>
     <Description>VLC media player is a free and open source cross-platform multimedia player...</Description>
-    <DownloadUrl>http://gjhkyio.0hi.me/files/videolan.vlcforwindows8_2018.802.923.0_neutral___paz6r1rewnh0a.appxbundle</DownloadUrl>
+    <DownloadUrl>https://github.com/OpenGlebsur/ReWinStore-Bloom-ESU-/releases/download/Apps/VideoLAN.VLCforWindows8_2018.802.923.0_neutral_._paz6r1rewnh0a.appxbundle</DownloadUrl>
     <IconUrl>https://web.archive.org/web/20160323123407im_/https://store-images.s-microsoft.com/image/apps.28962.9007199266246349.76e1eb40-047a-4029-a6d5-6b4259422f79.55ff382f-d25a-4f83-8501-a6436eaf9fe6?w=100&amp;h=100&amp;q=60</IconUrl>
     <Category>Video + Entertainment</Category>
     <FileType>APPXBUNDLE</FileType>
