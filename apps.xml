@@ -48,6 +48,22 @@
     <Rating>4.5</Rating>
     <IsExclusive>true</IsExclusive>
   </App>
+    <App>
+    <Id>DankFM</Id>
+    <Name>DankFM</Name>
+    <Developer>Epic Projects</Developer>
+    <Version>1.0</Version>
+    <Description>This application is in EARLY ALPHA and is MOSTLY INCOMPLETE. Stream DankFM straight from your Windows 8.1 device and experience... a CD collection LOL</Description>
+    <DownloadUrl>https://github.com/OpenGlebsur/ReWinStore-Bloom-ESU-/raw/refs/heads/main/appx/DankFM.appxbundle</DownloadUrl>
+    <IconUrl>https://github.com/OpenGlebsur/ReWinStore-Bloom-ESU-/blob/main/photos/DankFM.png?raw=true</IconUrl>
+    <Category>music</Category>
+    <FileType>APPXBUNDLE</FileType>
+    <Architecture>AnyCPU</Architecture>
+    <Downloads>0</Downloads>
+    <Rank>999</Rank>
+    <Rating>4.5</Rating>
+    <IsExclusive>false</IsExclusive>
+  </App>
   <App>
     <Id>136_archive</Id>
     <Name>VLC for Windows 8</Name>
