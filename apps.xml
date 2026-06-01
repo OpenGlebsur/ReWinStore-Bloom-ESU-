@@ -16,6 +16,22 @@
     <Rating>4.0</Rating>
     <IsExclusive>false</IsExclusive>
   </App>
+   <App>
+    <Id>PhotoWindow</Id>
+    <Name>PhotoWindow</Name>
+    <Developer> Miyabi Software Dev</Developer>
+    <Version>1.7</Version>
+    <Description>This is an album application that can be laid out free to crop your favorite part of a lot of pictures.</Description>
+    <DownloadUrl>https://github.com/OpenGlebsur/ReWinStore-Bloom-ESU-/raw/refs/heads/main/appx/61711masaxjr.PhotoWindow_1.7.0.0_neutral__jwmqhy3chykh8.appx</DownloadUrl>
+    <IconUrl>https://github.com/OpenGlebsur/ReWinStore-Bloom-ESU-/blob/main/photos/PhotoWIndow.png?raw=true</IconUrl>
+    <Category>Photo</Category>
+    <FileType>APPX</FileType>
+    <Architecture>AnyCPU</Architecture>
+    <Downloads>0</Downloads>
+    <Rank>999</Rank>
+    <Rating>4.5</Rating>
+    <IsExclusive>false</IsExclusive>
+  </App>
   <App>
     <Id>draymusic</Id>
     <Name>DrayMusic</Name>
@@ -23,7 +39,7 @@
     <Version>1.0</Version>
     <Description>Music app by DraydenYT. Listen to your favorite tracks in a modern style.</Description>
     <DownloadUrl>https://github.com/OpenGlebsur/ReWinStore-Bloom-ESU-/raw/refs/heads/main/appx/DrayMusic_1.0.0.0_AnyCPU.appx</DownloadUrl>
-    <IconUrl>https://files.catbox.moe/lxjx96.png</IconUrl>
+    <IconUrl>https://github.com/OpenGlebsur/ReWinStore-Bloom-ESU-/blob/main/photos/DrayMusic.png?raw=true</IconUrl>
     <Category>music</Category>
     <FileType>APPX</FileType>
     <Architecture>AnyCPU</Architecture>
