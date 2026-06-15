@@ -95,4 +95,20 @@
     <Rating>4.0</Rating>
     <IsExclusive>false</IsExclusive>
   </App>
+  <App>
+    <Id>ZenGet</Id>
+    <Name>ZenGet</Name>
+    <Developer>ZenStudios</Developer>
+    <Version>1.0.0.0</Version>
+    <Description> ZenGet is the first Windows 8 app to have the ability to generate links for the Microsoft Store apps without going to a browser </Description>
+<DownloadUrl>https://github.com/bloomthebloom/zenprojects/raw/refs/heads/main/ZenGet_1.0.0.0_AnyCPU.appx </DownloadUrl>
+ <IconUrl>https://github.com/OpenGlebsur/ReOpenProjects.github.io/blob/main/ZenGetLogo.webp?raw=true</IconUrl>
+    <Category>Utilites</Category>
+    <FileType>Appx</FileType>
+    <Architecture>AnyCPU</Architecture>
+    <Downloads>475</Downloads>
+    <Rank>999</Rank>
+    <Rating>4.0</Rating>
+    <IsExclusive>ture</IsExclusive>
+  </App>
 </Apps>
