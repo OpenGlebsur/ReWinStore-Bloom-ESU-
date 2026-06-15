@@ -111,7 +111,7 @@
     <Rating>4.0</Rating>
     <IsExclusive>ture</IsExclusive>
   </App>
-  <App>
+<App>
     <Id>Bing_archive</Id>
     <Name>Bing</Name>
     <Developer>bloom on Discord</Developer>
