@@ -111,4 +111,20 @@
     <Rating>4.0</Rating>
     <IsExclusive>ture</IsExclusive>
   </App>
+  <App>
+    <Id>Bing_archive</Id>
+    <Name>Bing</Name>
+    <Developer>bloom on Discord</Developer>
+    <Version>3.0.4.456</Version>
+    <Description>Designed for Windows 8.1, the Bing app brings you the Bing Wallpaper in your start screen</Description>
+    <DownloadUrl>https://github.com/bloomthebloom/bing/raw/refs/heads/main/Bing%20-%20Windows%208.1_3.0.4.456_x86_x64_arm.appxbundle</DownloadUrl>
+    <IconUrl></IconUrl>
+    <Category>Personalization</Category>
+    <FileType>APPXBUNDLE</FileType>
+    <Architecture>AnyCPU</Architecture>
+    <Downloads>0</Downloads>
+    <Rank>999</Rank>
+    <Rating>0</Rating>
+    <IsExclusive>false</IsExclusive>
+</App>
 </Apps>
